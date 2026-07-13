@@ -85,39 +85,6 @@ app.delete('/product/:id', async(req,res)=>{
   }
 })
 
-
-
-//AI integrated description generator
-app.post('/generate-description', async (req, res) => {
-  const { productName, keywords } = req.body;
-
-  const prompt = `Write a compelling 2-3 sentence ecommerce product description for:
-Product: ${productName}
-Keywords: ${keywords}
-Tone: persuasive, concise, no markdown.`;
-
-  try {
-    const response = await fetch(
-      `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-lite:generateContent?key=${process.env.GEMINI_API_KEY}`,
-      {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({
-          contents: [{ parts: [{ text: prompt }] }]
-        })
-      }
-    );
-    const data = await response.json();
-    console.log(response.status)
-    console.log(JSON.stringify(data, null, 2));
-    const description = data?.candidates?.[0]?.content?.parts?.[0]?.text;
-    res.json({ description });
-  } catch (err) {
-    console.error( err);
-    res.status(500).json({ message:err.message,stack:err.stack });
-  }
-});
-
 // Connect to MongoDB
 async function main() {
   try {
