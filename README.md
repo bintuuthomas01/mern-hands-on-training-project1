@@ -16,6 +16,7 @@ A lightweight, full-stack web application built using the MERN stack (MongoDB, E
 ### Frontend
 *   **React.js** - Component-based user interface.
 *   **Axios** - For handling API requests to the backend.
+*   **Tailwind CSS** - For styling
 
 ### Backend
 *   **Node.js** - JavaScript runtime environment.
